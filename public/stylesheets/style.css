@@ -95,3 +95,9 @@ input[type=text] {
 .error {
   color: rgb(236, 15, 15);
 }
+
+#delete a,
+#delete input
+{
+  margin-left: 10px;
+}

@@ -1,0 +1,12 @@
+extends ../layout 
+
+block content 
+  h1 Confirmation 
+  p Are you sure you want to delete this book?
+  p (#{book.title})
+  p 
+  form#delete(action="/books/" + book.id + "/delete", method="post")
+    p 
+      a.button(href="/books") Cancel
+    p 
+      input(type="submit", value="Yes")
