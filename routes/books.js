@@ -109,12 +109,14 @@ router.post('/new', asyncWrapper(async (req, res, next) => {
 
 // Route to view each book according to book id.
 router.get('/:id', asyncWrapper(async (req, res, next) => {
-  let id = req.params.id;
-  let book = await Book.findByPk(id);
+  const id = req.params.id;
+  const book = await Book.findByPk(id);
   if (book) {
     res.render('books/show', {book, title:"Book Details"});
   } else {
-    res.sendStatus(404);
+    const err = new Error("Page not found!");
+    err.status = 404;
+    next(err);
   }
 }));
 
@@ -125,12 +127,14 @@ router.get('/:id/edit', asyncWrapper(async (req, res, next) => {
   if (book) {
     res.render('books/update-book', {book, title:"Book Details"});
   } else {
-    res.sendStatus(404);
+    const err = new Error("Page not found!");
+    err.status = 404;
+    next(err);
   }
 }));
 
 // Route to handle book update submit.
-router.post('/:id/edit', asyncWrapper(async (req, res, next) => {
+router.post('/:id', asyncWrapper(async (req, res, next) => {
   let id = req.params.id;
   let book
   try {
@@ -139,7 +143,9 @@ router.post('/:id/edit', asyncWrapper(async (req, res, next) => {
       await book.update(req.body);
       res.redirect('/books');
     } else {
-      res.sendStatus(404);
+      const err = new Error("Page not found!");
+      err.status = 404;
+      next(err);
     }    
   } catch (error) {
     if (error.name === "SequelizeValidationError") {
