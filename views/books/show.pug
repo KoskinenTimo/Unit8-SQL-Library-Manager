@@ -1,0 +1,25 @@
+extends ../layout 
+
+block content
+  h1=title
+  p
+    label Title
+    label=book.title
+  p
+    label Author
+    label=book.author
+  p
+    label Genre
+    label=book.genre
+  p
+    label Year
+    label=book.year
+
+  form(action=`/books/${book.id}/edit`, method="get")    
+    p 
+      input(type="submit", value="Edit Book")
+  form(action=`/books/${book.id}/delete`, method="get")
+    p 
+      a.button(href="/books/page/1") Back
+    p 
+      input(type="submit", value="Delete Book")

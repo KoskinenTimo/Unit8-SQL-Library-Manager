@@ -1,10 +1,10 @@
 extends ../layout
 
 block content 
-  h1=title  
+  h1 Books  
   p 
     label A collection of different books, you can use the search feature for all attributes. 
-  form(action="/books", method="post")
+  form(action="/books/1", method="post")
     p 
       label(for="searchInput")
     p
@@ -15,8 +15,6 @@ block content
       a.button(href="/books/page/1") Home
     p
       a.button(href="/books/new") Create New Book  
-  
-  include pagination
   table 
     thead
       tr
@@ -33,4 +31,3 @@ block content
           td=book.genre
           td=book.year
   
-  include pagination

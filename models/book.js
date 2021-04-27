@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Book extends Model {
+  class Book extends Model {    
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -42,13 +42,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     year: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
+      type: DataTypes.INTEGER,      
+      allowNull: true,      
       validate: {
-        isIn: {
-          args: [[/^\d{4}$/i, null]],
-          msg: "Year must be in the form YYYY",
-        },        
+        is: {
+          args: /^$|^\d{4}$/i,
+          msg: "Year must be in format YYYY or empty."
+        },
+          
       },
     },
   }, {
