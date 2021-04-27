@@ -11,7 +11,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -45,7 +45,7 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {  
   if (err.status === 404) {
     res.status(err.status);
-    res.render('page-not-found', {title:"Not Found!"})
+    res.render('page-not-found', {err, title:"Not Found!"})
   } else {
     res.status(err.status || 500);
     err.message = err.message || "Something went wrong!";

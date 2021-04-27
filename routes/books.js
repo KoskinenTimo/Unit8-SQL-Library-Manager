@@ -23,8 +23,18 @@ router.get('/new', function(req, res, next) {
 });
 
 router.post('/new', asyncWrapper(async (req, res, next) => {
-  let book = await Book.create(req.body);
-  res.redirect('/books');
+  let book;
+  try {
+    book = await Book.create(req.body);
+    res.redirect('/books');
+  } catch (error) {
+    if (error.name === "SequelizeValidationError") {
+      book = await Book.build(req.body);
+      res.render('books/new', {book, errors:error.errors, title:"New Book"});
+    } else {
+      throw error;
+    }
+  }
 }));
 
 router.get('/:id', asyncWrapper(async (req, res, next) => {
