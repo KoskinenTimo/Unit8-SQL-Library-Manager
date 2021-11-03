@@ -51,7 +51,7 @@ jobs:
           heroku_email: "koskinentht@gmail.com"
           healthcheck: "https://koskinentht-library.herokuapp.com/health"          
           checkstring: "ok"
-          delay: 4
+          delay: 8
           rollbackonhealthcheckfailed: true
       # - uses: 8398a7/action-slack@v3
       #   with:
