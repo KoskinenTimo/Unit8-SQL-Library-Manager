@@ -1,3 +1,4 @@
 example-markup/
 mockups/
 node_modules/
+.env
