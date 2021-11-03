@@ -1,20 +1,22 @@
-name: Hello World!
+name: Deployment pipeline
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
 
 jobs:
-  hello_world_job:
-    runs-on: ubuntu-18.04
-    steps:
-      - name: hello_world_job
-        run: |
-          echo "Hello World!"
-      - name: Now it is
-        run: |
-          date
-      - name: Directory content
-        run: |
-          ls -l
+  tag_version:
+  runs-on: ubuntu-18.04
+  steps:
+  - uses: actions/checkout@v2
+  - name: Bump version and push tag
+    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip')}}
+    uses: anothrNick/github-tag-action@eca2b69f9e2c24be7decccd0f15fdb1ea5906598
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      WITH_V: true
+      DEFAULT_BUMP: patch

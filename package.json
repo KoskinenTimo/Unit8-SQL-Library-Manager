@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:e2e": "cypress run"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -14,11 +14,16 @@
     "http-errors": "~1.6.3",
     "jade": "^0.29.0",
     "morgan": "~1.9.1",
+    "nodemon": "^2.0.7",
     "pug": "^3.0.2",
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.2.0",
-    "sqlite3": "^5.0.2",
-    "nodemon": "^2.0.7"
+    "sqlite3": "^5.0.2"
   },
-  "engines": {"node": "12.13.0"}
+  "engines": {
+    "node": "12.13.0"
+  },
+  "devDependencies": {
+    "cypress": "^8.7.0"
+  }
 }
