@@ -49,9 +49,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "koskinentht-library" 
           heroku_email: "koskinentht@gmail.com"
-          healthcheck: "https://koskinentht-library.herokuapp.com/health"
-          checkstring: "ok"
-          rollbackonhealthcheckfailed: true
       # - uses: 8398a7/action-slack@v3
       #   with:
       #     status: custom
