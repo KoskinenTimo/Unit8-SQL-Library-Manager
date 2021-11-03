@@ -19,18 +19,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/health', (req, res) => {
-  res.send('ok')
-});
 
-app.get('/version', (req, res) => {
-  res.send('1') // change this string to ensure a new version deployed
-});
 
 app.use('/', routes);
 app.use('/books', books);
 const {sequelize} = require('./models');
 
+app.get('/health', (req, res) => {
+  res.send('ok')
+});
+app.get('/version', (req, res) => {
+  res.send('1') // change this string to ensure a new version deployed
+});
 // Connection testing script:
 // (async function() {
 //   try {
