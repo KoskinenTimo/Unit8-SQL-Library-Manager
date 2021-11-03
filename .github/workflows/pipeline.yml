@@ -49,7 +49,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "koskinentht-library" 
           heroku_email: "koskinentht@gmail.com"
-          healthcheck: "https://koskinentht-library.herokuapp.com/health"          
+          healthcheck: https://koskinentht-library.herokuapp.com/health        
           checkstring: "ok"
           delay: 8
           rollbackonhealthcheckfailed: true
